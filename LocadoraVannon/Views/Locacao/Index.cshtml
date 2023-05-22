@@ -1,0 +1,61 @@
+﻿@model IEnumerable<LocadoraVannon.Models.Locacao>
+
+@{
+    ViewData["Title"] = "Locações";
+}
+
+<h1>Locações</h1>
+<p>
+    <a asp-action="Create">Criar Novo</a>
+    <span> (Certifique-se de criar pelo menos um <a asp-area="" asp-controller="Cliente" asp-action="Index">Cliente</a> e um <a asp-area="" asp-controller="Filme" asp-action="Index">Filme</a> antes de criar uma Locação)</span>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Cliente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Filme)
+            </th>
+            <th>
+                Data de Locação
+            </th>
+            <th>
+                Data de Devolução
+            </th>
+            <th>
+                Valor Pago
+            </th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cliente.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Filme.Titulo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataLocacao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataDevolucao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ValorPago)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
